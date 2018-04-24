@@ -18,8 +18,7 @@ public abstract class Notifier {
      * @param methodName 执行方法 的方法名
      * @param args   执行方法的参数
      */
-    public abstract void addListener(Object object, String methodName,
-            Object... args);
+    public abstract void addListener(Object object, String methodName, Object... args);
 
     /**
      * 告诉所有要帮忙放哨的学生：老师来了
