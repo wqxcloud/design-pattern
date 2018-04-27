@@ -26,7 +26,6 @@ public class TestMain {
         citizen.living();
         citizen.setType(AreaTypeEnum.PROVINCE.getType());
         citizen.living();
-        log.info(new String("苏A12345".getBytes(),"GBK"));
     }
 
     @Test
