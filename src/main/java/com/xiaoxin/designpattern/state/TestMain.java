@@ -1,12 +1,15 @@
 package com.xiaoxin.designpattern.state;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * @Auther zhangyongxin
  * @date 2018/4/25 下午10:47
  */
-
+@Slf4j
 public class TestMain {
 
     /**
@@ -16,13 +19,14 @@ public class TestMain {
      * testState 方法的效果等价于 testCondition，但是testState更优雅不是吗？
      */
     @Test
-    public void testState(){
+    public void testState() throws UnsupportedEncodingException {
         Citizen citizen = new Citizen(AreaTypeEnum.COUNTY.getType());
         citizen.living();
         citizen.setType(AreaTypeEnum.CITY.getType());
         citizen.living();
         citizen.setType(AreaTypeEnum.PROVINCE.getType());
         citizen.living();
+        log.info(new String("苏A12345".getBytes(),"GBK"));
     }
 
     @Test
