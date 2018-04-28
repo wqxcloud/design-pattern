@@ -16,8 +16,14 @@ public class TestMain {
     @Test
     public void testCommand(){
         Soldier soldier = new Soldier();
-        Command command = new RescueCommand("解救人质",soldier);
+        Command command = new RescueCommand(soldier);
         Commander commander = new Commander(command);
         commander.execute();
+
+        ArmySoldier armySoldier = new ArmySoldier();
+        Command warCommand = new WarCommand(armySoldier);
+        Commander warCommander = new Commander(warCommand);
+        warCommander.execute();
+
     }
 }

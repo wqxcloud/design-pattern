@@ -7,12 +7,12 @@ package com.xiaoxin.designpattern.command;
  */
 public class RescueCommand extends Command{
 
-    public RescueCommand(String cmd, Soldier soldier) {
-        super(cmd, soldier);
+    public RescueCommand(Soldier soldier) {
+        super(soldier);
     }
 
     @Override
     public void execute() {
-        soldier.execute(cmd);
+        soldier.execute("解救人质");
     }
 }

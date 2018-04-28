@@ -14,10 +14,7 @@ public abstract class Command {
 
     protected Soldier soldier;
 
-    protected String cmd;
-
-    public Command(String cmd,Soldier soldier) {
-        this.cmd = cmd;
+    public Command(Soldier soldier) {
         this.soldier = soldier;
     }
     public abstract void execute();
