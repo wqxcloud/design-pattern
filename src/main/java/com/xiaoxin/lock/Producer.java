@@ -15,6 +15,12 @@ public class Producer implements Runnable {
     @Override
     public void run() {
         Bank bank = new Bank();
-        bank.put(money);
+        try {
+           for (int i= 0;i<100;i++){
+               bank.put(money);
+           }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

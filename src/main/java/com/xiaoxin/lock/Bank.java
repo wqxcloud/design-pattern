@@ -16,17 +16,19 @@ public class Bank {
     private static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
 
-    public void check(Money money) {
+    public void check(Money money) throws InterruptedException {
         lock.readLock().lock();
         log.info("查看余额：" + money.getAmount());
+//        Thread.sleep((long) (Math.random()*1000));
         lock.readLock().unlock();
 
     }
 
-    public void put(Money money) {
+    public void put(Money money) throws InterruptedException {
         lock.writeLock().lock();
         money.setAmount(money.getAmount() + 1);
         log.info("存了了一块钱;--------end---------查看余额：" + money.getAmount());
+//        Thread.sleep((long) (Math.random()*1000));
         lock.writeLock().unlock();
     }
 }

@@ -15,6 +15,12 @@ public class Reader implements Runnable {
     @Override
     public void run() {
         Bank bank = new Bank();
-        bank.check(money);
+        try {
+            for (int i= 0;i<100;i++){
+                bank.check(money);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
