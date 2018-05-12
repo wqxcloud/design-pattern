@@ -17,7 +17,7 @@ public class ThreadExecutor {
                 if (threadPoolExecutor == null || threadPoolExecutor.isShutdown()) {
                     threadPoolExecutor = new ThreadPoolExecutor(POOL_SIZE, MAX_POOL_SIZE,
                     		TIME_OUT, TimeUnit.MILLISECONDS,
-                            new LinkedBlockingQueue<Runnable>());
+                            new LinkedBlockingQueue<Runnable>(MAX_POOL_SIZE));
                 }
             }
         }
