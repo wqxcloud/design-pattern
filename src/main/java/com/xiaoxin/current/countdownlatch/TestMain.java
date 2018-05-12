@@ -16,7 +16,7 @@ import java.util.concurrent.*;
 public class TestMain {
 
     /**
-     * join 可以实现多个线程同时执行，之后完毕后加入主线程，实现异步后同步的操作
+     * countDownLatch 可以实现多个线程同时执行，之后完毕后加入主线程，实现异步后同步的操作
      * @throws InterruptedException
      */
     @Test
