@@ -1,4 +1,4 @@
-package com.xiaoxin.lock;
+package com.xiaoxin.current.lock;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

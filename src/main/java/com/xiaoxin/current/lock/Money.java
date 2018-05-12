@@ -1,4 +1,4 @@
-package com.xiaoxin.lock;
+package com.xiaoxin.current.lock;
 
 import lombok.Getter;
 import lombok.Setter;
