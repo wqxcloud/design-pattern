@@ -27,7 +27,9 @@ public class Reader implements Runnable, Callable {
             for (int i = 0; i < 100; i++) {
                 bank.check(money);
             }
+            Thread.sleep(1000);
             cyclicBarrier.await();
+            log.info("reader:我到集合点了");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (BrokenBarrierException e) {

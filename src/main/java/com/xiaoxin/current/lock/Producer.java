@@ -27,7 +27,8 @@ public class Producer implements Runnable, Callable {
             for (int i = 0; i < 100; i++) {
                 bank.put(money);
             }
-            Thread.sleep(3000);
+            Thread.sleep(1000);
+            log.info("我继续执行了");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {

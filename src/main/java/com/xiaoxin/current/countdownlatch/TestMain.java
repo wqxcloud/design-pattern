@@ -20,8 +20,8 @@ public class TestMain {
      * @throws InterruptedException
      */
     @Test
-    public void testJoin() throws InterruptedException {
-
+    public void testCountDownLatch() throws InterruptedException {
+        long start = System.currentTimeMillis();
         CountDownLatch countDownLatch = new CountDownLatch(3);
         Money money = new Money();
         Producer producer = new Producer(money,countDownLatch);
@@ -34,8 +34,9 @@ public class TestMain {
         task3.start();
         task2.start();
 
+        //主线程等待
         countDownLatch.await();
-        log.info("我到底还剩多少钱？"+money.getAmount());
+        log.info("我到底还剩多少钱？"+money.getAmount()+"；用时"+(System.currentTimeMillis()-start));
 
     }
 }

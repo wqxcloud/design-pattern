@@ -25,7 +25,9 @@ public class Producer implements Runnable, Callable {
             for (int i = 0; i < 100; i++) {
                 bank.put(money);
             }
+            Thread.sleep(1000);
             cyclicBarrier.await();
+            log.info("producer:我到集合点了");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (BrokenBarrierException e) {
