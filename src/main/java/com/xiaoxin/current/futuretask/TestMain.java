@@ -16,7 +16,7 @@ import java.util.concurrent.*;
 public class TestMain {
 
     @Test
-    public void testFutureTask(){
+    public void testFutureTask() throws ExecutionException, InterruptedException {
 
         Money money = new Money();
         Producer producer = new Producer(money);
@@ -27,9 +27,14 @@ public class TestMain {
         ThreadExecutor.execute(task1);
         ThreadExecutor.execute(task2);
         ThreadExecutor.execute(task3);
-        while(!task1.isDone() && !task3.isDone()){
-
+        for(int i=0;i<1000;i++){
+            FutureTask task = new FutureTask(producer);
+            ThreadExecutor.execute(task);
         }
+        // wait 1/2/3执行完毕
+        task1.get();
+        task2.get();
+        task3.get();
         log.info("我到底还剩多少钱？"+money.getAmount());
 
     }

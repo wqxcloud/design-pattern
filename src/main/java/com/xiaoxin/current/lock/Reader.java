@@ -28,6 +28,7 @@ public class Reader implements Runnable, Callable {
             for (int i = 0; i < 100; i++) {
                 bank.check(money);
             }
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
