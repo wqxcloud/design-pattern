@@ -21,6 +21,7 @@ public class ThreadExecutor {
                     threadPoolExecutor = new ThreadPoolExecutor(POOL_SIZE, MAX_POOL_SIZE,
                     		TIME_OUT, TimeUnit.MILLISECONDS,
                             new LinkedBlockingQueue<Runnable>(100));// 允许等待队列为100个
+                    // 解决等待队列满了，避免任务丢失的问题
                     threadPoolExecutor.setRejectedExecutionHandler(new BlockWhenBusyHandler());
                 }
             }
