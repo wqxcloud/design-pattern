@@ -22,6 +22,7 @@ import java.util.Set;
 
 /**
  * 参数的校验分为 bean的校验和其他类型参数校验，需要分开对应。
+ * 基本数据类型必须写成包装类型。
  * @Auther zhangyongxin
  * @date 2018/5/17 上午10:11
  */
@@ -29,25 +30,6 @@ import java.util.Set;
 @Component
 @Slf4j
 public class ParameterValidationAspect {
-
-    @Around("execution(public * com.xiaoxin..*.service..*.*(..))")
-    public Object validateBeans(ProceedingJoinPoint joinPoint) throws Throwable {
-        String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
-        String methodName = joinPoint.getSignature().getName();
-        Object[] args = joinPoint.getArgs();
-        log.info("ParameterValidationAspect before " + className + "." + methodName);
-        if (null != args && args.length > 0) {
-            ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory();
-            Validator validator = validatorFactory.getValidator();
-            Set<ConstraintViolation<Object>> violations = new HashSet<>();
-            for (Object object : args) {
-                violations.addAll(validator.validate(object));
-            }
-            dealWithValidations(violations);
-        }
-        return joinPoint.proceed();
-
-    }
 
     @Around("execution(public * com.xiaoxin..*.service..*.*(..))")
     public Object validateParameters(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -58,15 +40,21 @@ public class ParameterValidationAspect {
         if (null != args && args.length > 0) {
             ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory();
             ExecutableValidator validator = validatorFactory.getValidator().forExecutables();
+            Validator beanValidator = validatorFactory.getValidator();
             Set<ConstraintViolation<Object>> violations = new HashSet<>();
             Class clazz = joinPoint.getSignature().getDeclaringType();
             Class[] classTypes = new Class[args.length];
+            // 因为此处获取不带基本类型的数据类型，只能获取对应的包装类型，所以在service层需要写基本类型对应的包装类型的参数
             for (int i=0;i<args.length;i++) {
                 classTypes[i] = args[i].getClass();
             }
             Method method = clazz.getMethod(methodName,classTypes);
-
+            // 非java bean的参数校验
             violations.addAll(validator.validateParameters(clazz.newInstance(),method,args));
+            // java Bean的参数校验
+            for (Object object : args) {
+                violations.addAll(beanValidator.validate(object));
+            }
             dealWithValidations(violations);
         }
         return joinPoint.proceed();
@@ -76,12 +64,9 @@ public class ParameterValidationAspect {
     private void dealWithValidations(Set<ConstraintViolation<Object>> violations) {
         if (violations.size() > 0) {
             StringBuffer buf = new StringBuffer();
-            //消息绑定，国际化实现
-//                ResourceBundle bundle = ResourceBundle.getBundle("messages");
             for (ConstraintViolation<Object> violation : violations) {
-//                    buf.append("-" + bundle.getString(violation.getPropertyPath().toString()));
                 buf.append("-" + violation.getPropertyPath().toString());
-                buf.append(violation.getMessage() + "<BR>\n");
+                buf.append(violation.getMessage() + "<br/>\n");
             }
             throw new IllegalArgumentException(buf.toString());
         }

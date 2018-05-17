@@ -7,10 +7,7 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 /**
@@ -35,6 +32,6 @@ public class Student {
     @Past(message = "生日不能大于当前时间")
     @DateTimeFormat(pattern = "yyyMMdd")
     private Date birthDay;
-
-
+    @Max(value = 130,message = "年龄不能超过130岁")
+    private int age;
 }

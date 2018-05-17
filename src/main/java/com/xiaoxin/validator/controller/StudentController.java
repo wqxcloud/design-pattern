@@ -26,12 +26,12 @@ public class StudentController {
     public Result addOneStudent(){
         Student student = new Student();
         student.setBirthDay(new Date());
-        student.setEmail("123163");
+        student.setEmail("123163.com");
         student.setGender(0);
         student.setPhoneNumber("13987654320");
         student.setName("韩梅");
         student.setIdentityId("3412041900000000000");
-        student = studentService.addOneStudent(student);
+        student = studentService.addOneStudent(student,"");
         return new Result(student);
     }
 
@@ -44,7 +44,7 @@ public class StudentController {
         if(bindingResult.hasErrors()){
             return ResultGenerator.genValidationResult(bindingResult);
         }
-        return new Result(studentService.addOneStudent(student));
+        return new Result(studentService.addOneStudent(student,"3412041900000000000"));
     }
 
     @GetMapping("/findOne")
@@ -56,6 +56,12 @@ public class StudentController {
     @PostMapping("/deleteOne")
     public Result deleteOneStudent(@RequestBody String identityId){
         studentService.deleteOneStudent(identityId);
+        return ResultGenerator.genSuccessResult();
+    }
+
+    @PostMapping("/updateAge")
+    public Result updateStudentAge(@RequestParam String identityId,@RequestParam int age){
+        studentService.updateOneStudentAge(identityId,age);
         return ResultGenerator.genSuccessResult();
     }
 }

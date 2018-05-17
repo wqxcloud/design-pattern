@@ -7,6 +7,7 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**
+ * 自定义注解，性别只能为0、1
  * @Auther zhangyongxin
  * @date 2018/5/17 上午10:57
  */

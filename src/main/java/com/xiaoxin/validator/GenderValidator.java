@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 
 /**
- * 自定义注解；性别只能为 0、1
+ * 自定义注解相关的validator；性别只能为 0、1
  * @Auther zhangyongxin
  * @date 2018/5/17 上午10:59
  */

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ import java.util.Date;
 @Service
 public class StudentServiceImpl implements StudentService {
     @Override
-    public Student addOneStudent(Student student) {
+    public Student addOneStudent(Student student,String identityId) {
         log.info("add one student:"+student);
         return student;
     }
@@ -37,5 +38,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteOneStudent(String identityId) {
         log.info("deleted one student:{}",identityId);
+    }
+
+    @Override
+    public void updateOneStudentAge(String identityId,Integer age) {
+        log.info("deleted one student:{},age:{}",identityId,age);
     }
 }
