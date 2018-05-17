@@ -14,11 +14,14 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import javax.validation.executable.ExecutableValidator;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
+ * 参数的校验分为 bean的校验和其他类型参数校验，需要分开对应。
  * @Auther zhangyongxin
  * @date 2018/5/17 上午10:11
  */
@@ -28,7 +31,7 @@ import java.util.Set;
 public class ParameterValidationAspect {
 
     @Around("execution(public * com.xiaoxin..*.service..*.*(..))")
-    public Object validaParameters(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object validateBeans(ProceedingJoinPoint joinPoint) throws Throwable {
         String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
@@ -40,19 +43,47 @@ public class ParameterValidationAspect {
             for (Object object : args) {
                 violations.addAll(validator.validate(object));
             }
-            if (violations.size() > 0) {
-                StringBuffer buf = new StringBuffer();
-                //消息绑定，国际化实现
-//                ResourceBundle bundle = ResourceBundle.getBundle("messages");
-                for (ConstraintViolation<Object> violation : violations) {
-//                    buf.append("-" + bundle.getString(violation.getPropertyPath().toString()));
-                    buf.append("-" + violation.getPropertyPath().toString());
-                    buf.append(violation.getMessage() + "<BR>\n");
-                }
-                throw new IllegalArgumentException(buf.toString());
-            }
+            dealWithValidations(violations);
         }
         return joinPoint.proceed();
 
+    }
+
+    @Around("execution(public * com.xiaoxin..*.service..*.*(..))")
+    public Object validateParameters(ProceedingJoinPoint joinPoint) throws Throwable {
+        String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
+        String methodName = joinPoint.getSignature().getName();
+        Object[] args = joinPoint.getArgs();
+        log.info("ParameterValidationAspect before " + className + "." + methodName);
+        if (null != args && args.length > 0) {
+            ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class).configure().buildValidatorFactory();
+            ExecutableValidator validator = validatorFactory.getValidator().forExecutables();
+            Set<ConstraintViolation<Object>> violations = new HashSet<>();
+            Class clazz = joinPoint.getSignature().getDeclaringType();
+            Class[] classTypes = new Class[args.length];
+            for (int i=0;i<args.length;i++) {
+                classTypes[i] = args[i].getClass();
+            }
+            Method method = clazz.getMethod(methodName,classTypes);
+
+            violations.addAll(validator.validateParameters(clazz.newInstance(),method,args));
+            dealWithValidations(violations);
+        }
+        return joinPoint.proceed();
+
+    }
+
+    private void dealWithValidations(Set<ConstraintViolation<Object>> violations) {
+        if (violations.size() > 0) {
+            StringBuffer buf = new StringBuffer();
+            //消息绑定，国际化实现
+//                ResourceBundle bundle = ResourceBundle.getBundle("messages");
+            for (ConstraintViolation<Object> violation : violations) {
+//                    buf.append("-" + bundle.getString(violation.getPropertyPath().toString()));
+                buf.append("-" + violation.getPropertyPath().toString());
+                buf.append(violation.getMessage() + "<BR>\n");
+            }
+            throw new IllegalArgumentException(buf.toString());
+        }
     }
 }

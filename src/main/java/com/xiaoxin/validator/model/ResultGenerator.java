@@ -20,6 +20,9 @@ public class ResultGenerator {
     public Result genFailResult(){
         return new Result(failCode,failMsg);
     }
+    public Result genSuccessResult(){
+        return new Result(successCode,successMsg);
+    }
     public Result genValidationResult(BindingResult bindingResult){
         assert bindingResult.hasErrors();
         StringBuffer stringBuffer = new StringBuffer();

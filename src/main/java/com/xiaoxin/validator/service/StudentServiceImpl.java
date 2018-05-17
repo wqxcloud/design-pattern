@@ -3,8 +3,10 @@ package com.xiaoxin.validator.service;
 import com.xiaoxin.validator.model.Student;
 import com.xiaoxin.validator.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**
@@ -30,5 +32,10 @@ public class StudentServiceImpl implements StudentService {
         student.setName("韩梅");
         student.setIdentityId(identityId);
         return student;
+    }
+
+    @Override
+    public void deleteOneStudent(String identityId) {
+        log.info("deleted one student:{}",identityId);
     }
 }

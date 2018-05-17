@@ -26,7 +26,7 @@ public class StudentController {
     public Result addOneStudent(){
         Student student = new Student();
         student.setBirthDay(new Date());
-        student.setEmail("123@163.com");
+        student.setEmail("123163");
         student.setGender(0);
         student.setPhoneNumber("13987654320");
         student.setName("韩梅");
@@ -51,5 +51,11 @@ public class StudentController {
     public Result findOneStudent(@NotEmpty String identityId){
         Student student =  studentService.findOneStudent(identityId);
         return new Result(student);
+    }
+
+    @PostMapping("/deleteOne")
+    public Result deleteOneStudent(@RequestBody String identityId){
+        studentService.deleteOneStudent(identityId);
+        return ResultGenerator.genSuccessResult();
     }
 }
