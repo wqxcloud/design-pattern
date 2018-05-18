@@ -1,5 +1,6 @@
 package com.xiaoxin.validator.service;
 
+import com.xiaoxin.validator.annotation.NeedValidate;
 import com.xiaoxin.validator.model.Student;
 import com.xiaoxin.validator.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import java.util.Date;
 @Service
 public class StudentServiceImpl implements StudentService {
     @Override
+    @NeedValidate
     public Student addOneStudent(Student student,String identityId) {
         log.info("add one student:"+student);
         return student;
@@ -41,7 +43,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @NeedValidate
     public void updateOneStudentAge(String identityId,Integer age) {
-        log.info("deleted one student:{},age:{}",identityId,age);
+        log.info("updateOneStudentAge:{},age:{}",identityId,age);
     }
 }

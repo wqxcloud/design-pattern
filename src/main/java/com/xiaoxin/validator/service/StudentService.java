@@ -1,5 +1,6 @@
 package com.xiaoxin.validator.service;
 
+import com.xiaoxin.validator.annotation.NeedValidate;
 import com.xiaoxin.validator.model.Student;
 import org.hibernate.validator.constraints.Length;
 
