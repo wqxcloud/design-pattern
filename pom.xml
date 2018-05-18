@@ -22,6 +22,17 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+
+		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+		<targetMapperPackage>com.xiaoxin.dao</targetMapperPackage>
+		<targetModelPackage>com.xiaoxin.model</targetModelPackage>
+		<!--  XML生成路径  -->
+		<targetResourcesProject>${basedir}/src/main/java/com/xiaoxin/mapper</targetResourcesProject>
+		<targetXMLPackage>mapper</targetXMLPackage>
+		<!--  依赖版本  -->
+		<mapper.version>3.3.6</mapper.version>
+		<mysql.version>5.1.46</mysql.version>
+
 	</properties>
 
 	<dependencies>
@@ -116,6 +127,8 @@
 			<version>3.4.2</version>
 		</dependency>
 	</dependencies>
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -129,6 +142,28 @@
 					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tk.mybatis</groupId>
+                        <artifactId>mapper</artifactId>
+                        <version>${mapper.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
 		</plugins>
 	</build>
 

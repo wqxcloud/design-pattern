@@ -23,6 +23,9 @@ public class ResultGenerator {
     public Result genSuccessResult(){
         return new Result(successCode,successMsg);
     }
+    public Result genSuccessResult(Object object){
+        return new Result(successCode,successMsg,object);
+    }
     public Result genValidationResult(BindingResult bindingResult){
         assert bindingResult.hasErrors();
         StringBuffer stringBuffer = new StringBuffer();
