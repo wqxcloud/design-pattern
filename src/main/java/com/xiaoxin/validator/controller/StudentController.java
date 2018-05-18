@@ -60,7 +60,7 @@ public class StudentController {
     }
 
     @PostMapping("/updateAge")
-    public Result updateStudentAge(@RequestParam String identityId,@RequestParam int age){
+    public Result updateStudentAge(@RequestParam String identityId,@RequestParam int age) throws InterruptedException {
         studentService.updateOneStudentAge(identityId,age);
         return ResultGenerator.genSuccessResult();
     }

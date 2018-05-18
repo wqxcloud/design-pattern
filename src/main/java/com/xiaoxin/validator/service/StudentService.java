@@ -19,6 +19,6 @@ public interface StudentService {
     void deleteOneStudent(@Length(min=19,max=19)String identityId);
 
     void updateOneStudentAge(@Length(min=19,max=19)String identityId,
-                          @Max(value = 130,message = "年龄不能超过130岁") Integer age);
+                          @Max(value = 130,message = "年龄不能超过130岁") Integer age) throws InterruptedException;
 
 }

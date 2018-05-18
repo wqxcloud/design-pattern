@@ -2,13 +2,10 @@ package com.xiaoxin.validator.service;
 
 import com.xiaoxin.validator.annotation.NeedValidate;
 import com.xiaoxin.validator.model.Student;
-import com.xiaoxin.validator.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**
@@ -17,11 +14,12 @@ import java.util.Date;
  */
 @Slf4j
 @Service
+@Transactional(rollbackFor = Exception.class,timeout = 1)
 public class StudentServiceImpl implements StudentService {
     @Override
     @NeedValidate
-    public Student addOneStudent(Student student,String identityId) {
-        log.info("add one student:"+student);
+    public Student addOneStudent(Student student, String identityId) {
+        log.info("add one student:" + student);
         return student;
     }
 
@@ -39,12 +37,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteOneStudent(String identityId) {
-        log.info("deleted one student:{}",identityId);
+        log.info("deleted one student:{}", identityId);
     }
 
     @Override
     @NeedValidate
-    public void updateOneStudentAge(String identityId,Integer age) {
-        log.info("updateOneStudentAge:{},age:{}",identityId,age);
+    public void updateOneStudentAge(String identityId, Integer age) throws InterruptedException {
+        // 测试事物超时
+        Thread.sleep(3000);
+        log.info("updateOneStudentAge:{},age:{}", identityId, age);
     }
 }
