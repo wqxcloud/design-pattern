@@ -19,16 +19,16 @@ public class HotBrandComponent {
 
     public Set<String> findTopHotBrands(int userId){
         ZSetOperations ops = template.opsForZSet();
-        Set<String> hotBrands = ops.reverseRange("brand:hot:"+userId,0,14);
+        Set<String> hotBrands = ops.reverseRange("design-pattern:brand:hot:"+userId,0,14);
         return hotBrands;
     }
 
     public boolean addBrandHot(BrandHotInfo brandHotInfo) {
         ZSetOperations ops = template.opsForZSet();
-        boolean isSuccess = false;
-        isSuccess =ops.incrementScore("brand:hot:"+brandHotInfo.getUserId(),
+        boolean isSuccess =ops.incrementScore("design-pattern:brand:hot:"+brandHotInfo.getUserId(),
                 brandHotInfo.getBrandName(),1)>0;
         return isSuccess;
 
     }
+
 }

@@ -1,14 +1,18 @@
 package com.xiaoxin.model;
 
+import com.sun.org.apache.xml.internal.utils.SerializableLocatorImpl;
 import se.spagettikod.optimist.Identity;
 import se.spagettikod.optimist.OptimisticLocking;
 import se.spagettikod.optimist.Version;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "user_info")
 @OptimisticLocking("user_info")
-public class UserInfo {
+public class UserInfo implements Serializable {
+
+    private static final long serialVersionUID = -1865544772263281832L;
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
