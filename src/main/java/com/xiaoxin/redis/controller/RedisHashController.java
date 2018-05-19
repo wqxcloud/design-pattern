@@ -1,7 +1,7 @@
 package com.xiaoxin.redis.controller;
 
 import com.xiaoxin.model.UserInfo;
-import com.xiaoxin.redis.RedisHashComponent;
+import com.xiaoxin.redis.component.RedisHashComponent;
 import com.xiaoxin.validator.model.Result;
 import com.xiaoxin.validator.model.ResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;

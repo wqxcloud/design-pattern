@@ -1,4 +1,4 @@
-package com.xiaoxin.redis;
+package com.xiaoxin.redis.model;
 
 import lombok.Getter;
 import lombok.Setter;

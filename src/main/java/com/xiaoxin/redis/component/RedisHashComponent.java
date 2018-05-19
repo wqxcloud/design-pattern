@@ -1,4 +1,4 @@
-package com.xiaoxin.redis;
+package com.xiaoxin.redis.component;
 
 import com.xiaoxin.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
-package com.xiaoxin.redis;
+package com.xiaoxin.redis.component;
 
+import com.xiaoxin.redis.model.BrandHotInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -12,7 +13,7 @@ import java.util.Set;
  * @date 2018/5/19 上午11:07
  */
 @Component
-public class HotBrandComponent {
+public class RedisZSetComponent {
 
     @Autowired
     private StringRedisTemplate template;
