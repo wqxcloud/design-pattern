@@ -50,7 +50,9 @@ public class AbstractMyBatisConfigurer {
         optimisticProperties.setProperty("mapper", MySqlMapper.class.getName());
         optimisticLockingInterceptor.setProperties(optimisticProperties);
         //添加插件
-        factory.setPlugins(new Interceptor[]{pageHelper,new OptimisticLockingInterceptor(),new MybatisTransactionTimeoutInterceptor(), optimisticLockingInterceptor});
+        factory.setPlugins(new Interceptor[]{pageHelper,
+                new MybatisTransactionTimeoutInterceptor(),
+                optimisticLockingInterceptor});
 
         org.apache.ibatis.session.Configuration config = new org.apache.ibatis.session.Configuration();
         config.setDefaultStatementTimeout(5);
