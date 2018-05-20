@@ -2,10 +2,12 @@ package com.xiaoxin.redis.component;
 
 import com.xiaoxin.redis.model.BrandHotInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -30,6 +32,14 @@ public class RedisZSetComponent {
                 brandHotInfo.getBrandName(),1)>0;
         return isSuccess;
 
+    }
+
+    public Set<String> rankByLexicographical(int userId){
+        ZSetOperations ops = template.opsForZSet();
+        // 按照存储顺序返回
+        RedisZSetCommands.Range range =new  RedisZSetCommands.Range();
+        Set<String> sortedSet =ops.rangeByLex("design-pattern:brand:hot:"+userId,range);
+        return sortedSet;
     }
 
 }

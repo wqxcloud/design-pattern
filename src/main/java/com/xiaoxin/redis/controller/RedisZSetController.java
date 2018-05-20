@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequestMapping("hotBrand")
 @RestController
-public class HotBrandController {
+public class RedisZSetController {
     @Autowired
     private RedisZSetComponent hotBrandComponent;
 
@@ -25,5 +25,10 @@ public class HotBrandController {
     @PostMapping("/addBrandHot")
     public Result addBrandHot(@RequestBody BrandHotInfo brandHotInfo){
         return ResultGenerator.genSuccessResult(hotBrandComponent.addBrandHot(brandHotInfo));
+    }
+
+    @GetMapping("/rankByLexicographical/{id}")
+    public Result rankByLexicographical(@PathVariable int id){
+        return ResultGenerator.genSuccessResult(hotBrandComponent.rankByLexicographical(id));
     }
 }

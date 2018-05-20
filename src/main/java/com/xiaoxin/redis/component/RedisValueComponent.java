@@ -23,6 +23,11 @@ public class RedisValueComponent {
         valueOperations.append(key,value);
     }
 
+    /**
+     * 点赞系统
+     * @param key
+     * @return
+     */
     public Long increment(String key){
         ValueOperations valueOperations =redisTemplate.opsForValue();
         //初始值为0
