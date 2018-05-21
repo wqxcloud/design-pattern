@@ -36,7 +36,6 @@ public class RedisZSetComponent {
 
     public Set<String> rankByLexicographical(int userId){
         ZSetOperations ops = template.opsForZSet();
-        // 按照存储顺序返回
         RedisZSetCommands.Range range =new  RedisZSetCommands.Range();
         Set<String> sortedSet =ops.rangeByLex("design-pattern:brand:hot:"+userId,range);
         return sortedSet;
