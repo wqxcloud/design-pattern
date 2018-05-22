@@ -4,13 +4,14 @@ import com.xiaoxin.jms.model.Message;
 import com.xiaoxin.jms.service.MessageService;
 import com.xiaoxin.validator.model.Result;
 import com.xiaoxin.validator.model.ResultGenerator;
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import javax.jms.Destination;
 
 /**
  * @Auther zhangyongxin
@@ -21,12 +22,11 @@ import javax.annotation.Resource;
 public class MessageController {
 
     @Autowired
-//    @Qualifier("clientMessageService")
-    private MessageService clientMessageService;
+    private MessageService messageService;
 
     @PostMapping("/addOne")
-    public Result addMessage(){
-        clientMessageService.addMessage(new Message());
+    public Result addMessage(@RequestBody String content) {
+        messageService.addMessage(new Message(content));
         return ResultGenerator.genSuccessResult();
     }
 
