@@ -1,12 +1,17 @@
 package com.xiaoxin.jms;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 @Slf4j
+@Component
+/**
+ * 暂时未解决
+ */
 public class DefaultResponseQueueListener implements MessageListener {
 
     public void onMessage(Message message) {

@@ -1,10 +1,8 @@
 package com.xiaoxin.jms.config;
 
 import com.xiaoxin.jms.DefaultResponseQueueListener;
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
-import org.springframework.boot.autoconfigure.jms.activemq.ActiveMQProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -16,7 +14,6 @@ import org.springframework.jms.support.converter.MessageType;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;
-import java.util.Arrays;
 
 /**
  * @Auther zhangyongxin
@@ -34,6 +31,7 @@ public class ActiveMqConfiguration {
     /**
      * Serialize message content to json using TextMessage
      * 否则需要配置信任的package
+     *
      * @return
      */
     @Bean
@@ -45,15 +43,14 @@ public class ActiveMqConfiguration {
     }
 
     @Bean
-    public JmsListenerContainerFactory<?> listenerFactory(ConnectionFactory connectionFactory,
-                                                    DefaultJmsListenerContainerFactoryConfigurer configurer) {
+    public JmsListenerContainerFactory<?> listenerFactory(ConnectionFactory connectionFactory, DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         configurer.configure(factory, connectionFactory);
         return factory;
     }
 
     @Bean
-    public DefaultResponseQueueListener defaultResponseQueueListener(){
+    public DefaultResponseQueueListener defaultResponseQueueListener() {
         DefaultResponseQueueListener listener = new DefaultResponseQueueListener();
         return listener;
     }

@@ -22,14 +22,4 @@ public class MessageReceiverComponent {
         log.info("receive mesage"+message.getContent());
     }
 
-    /**
-     *
-     * @param message
-     */
-    @JmsListener(destination = "myMq",containerFactory = "listenerFactory")
-    public String receiveAndResponseMessage(Message message){
-        log.info("receive mesage"+message.getContent());
-
-        return "收到信息了，稍后联系您";
-    }
 }
