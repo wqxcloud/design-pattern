@@ -2,6 +2,7 @@ package com.xiaoxin.redis.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,7 @@ import java.util.Map;
 public class RedisValueComponent {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     public void addValue(String key,String value){
         ValueOperations valueOperations =redisTemplate.opsForValue();

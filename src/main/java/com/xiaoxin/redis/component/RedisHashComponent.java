@@ -4,6 +4,7 @@ import com.xiaoxin.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -18,7 +19,7 @@ import java.util.List;
 public class RedisHashComponent {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     public void addUserInfo(UserInfo userInfo){
         HashOperations hashOperations= redisTemplate.opsForHash();

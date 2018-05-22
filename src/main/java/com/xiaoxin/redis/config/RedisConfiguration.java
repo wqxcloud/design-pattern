@@ -7,7 +7,7 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * 解决乱码问题
+ * 解决乱码问题,使用StringRedisTemplate则不会出现练吗问题
  * @Auther zhangyongxin
  * @date 2018/5/19 下午8:03
  */

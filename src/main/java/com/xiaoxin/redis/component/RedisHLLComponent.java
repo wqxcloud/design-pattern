@@ -3,6 +3,7 @@ package com.xiaoxin.redis.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HyperLogLogOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class RedisHLLComponent {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     /**
      * 可以在查看非详情时快速查看数量，类似粉丝数这样的值可以保存，或许使用计数器？

@@ -3,6 +3,7 @@ package com.xiaoxin.redis.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -15,7 +16,7 @@ import java.util.Set;
 public class RedisSetComponent {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     public void add(String key,String[] values) {
        SetOperations operations = redisTemplate.opsForSet();

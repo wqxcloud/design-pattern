@@ -17,13 +17,13 @@ import java.rmi.registry.Registry;
 public class RMIServerConfiguration {
 
     @Bean("accountServiceRmi")
-    public static RmiServiceExporter rmiServiceExporter(@Qualifier("accountService") AccountService accountService){
+    public RmiServiceExporter rmiServiceExporter(@Qualifier("accountService") AccountService accountService){
         RmiServiceExporter serviceExporter = new RmiServiceExporter();
         rmiServiceRegistry(serviceExporter,AccountService.class,accountService,AccountService.class.getSimpleName());
         return  serviceExporter;
     }
 
-    private static void rmiServiceRegistry(RmiServiceExporter rmiServiceExporter,Class serviceClazz, Object service,String serviceName){
+    private void rmiServiceRegistry(RmiServiceExporter rmiServiceExporter,Class serviceClazz, Object service,String serviceName){
         // 不设定时使用默认端口
         rmiServiceExporter.setServicePort(9902);
         // 默认 1099
