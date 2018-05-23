@@ -1,4 +1,4 @@
-package com.xiaoxin.cache.ehcache.model;
+package com.xiaoxin.cache.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

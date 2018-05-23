@@ -1,7 +1,7 @@
-package com.xiaoxin.cache.ehcache.controller;
+package com.xiaoxin.cache.controller;
 
-import com.xiaoxin.cache.ehcache.model.Token;
-import com.xiaoxin.cache.ehcache.service.TokenService;
+import com.xiaoxin.cache.model.Token;
+import com.xiaoxin.cache.service.TokenService;
 import com.xiaoxin.validator.model.Result;
 import com.xiaoxin.validator.model.ResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;

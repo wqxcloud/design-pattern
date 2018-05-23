@@ -1,6 +1,6 @@
-package com.xiaoxin.cache.ehcache.service;
+package com.xiaoxin.cache.service;
 
-import com.xiaoxin.cache.ehcache.model.Token;
+import com.xiaoxin.cache.model.Token;
 
 /**
  * @Auther zhangyongxin
