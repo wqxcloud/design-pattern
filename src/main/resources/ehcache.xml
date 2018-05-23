@@ -16,7 +16,7 @@
     <defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="30" timeToLiveSeconds="30"
                   overflowToDisk="false">
     </defaultCache>
-    <!-- 
+    <!--
         配置自定义缓存
         maxElementsInMemory：缓存中允许创建的最大对象数
         eternal：缓存中对象是否为永久的，如果是，超时设置将被忽略，对象从不过期。
