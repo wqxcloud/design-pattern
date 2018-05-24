@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 暴露方法：使用dubbo service注解
+ * 2.5.7以后支持注解，暂未调通
  *
  * @Auther zhangyongxin
  * @date 2018/5/24 上午10:12
