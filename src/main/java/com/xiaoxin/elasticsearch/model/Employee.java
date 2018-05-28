@@ -18,7 +18,6 @@ public class Employee {
     @Id
     private String id;
 
-    @Field
     private String firstName;
 
     private String lastName;
