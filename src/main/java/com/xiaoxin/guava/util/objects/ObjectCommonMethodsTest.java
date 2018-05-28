@@ -1,4 +1,4 @@
-package com.xiaoxin.guava.util;
+package com.xiaoxin.guava.util.objects;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Objects.equals ComparisonChain
  * @Auther zhangyongxin
  * @date 2018/5/28 下午4:44
  */
@@ -42,7 +43,7 @@ public class ObjectCommonMethodsTest {
         List<Person> persons = Lists.newArrayList(zhangsan, lisi, alibaba,wanger);
         Collections.sort(persons);
         for (Person person : persons) {
-            System.out.println(person);
+                log.info("person {}",person);
         }
     }
 
