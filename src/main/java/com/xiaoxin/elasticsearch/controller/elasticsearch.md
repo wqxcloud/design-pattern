@@ -8,3 +8,6 @@
 ## NOTE:
 1. 使用spring-data-elastic-search时需要注意版本需要支持
 2. java链接elastic-search的端口号为9300，9200是http端口
+3. 看似ElasticsearchRepository和ElasticSearchTemplate有很多相似之处，
+实则ElasticSearchTemplate提供了更多的复杂查询的实现，
+可以看做是ElasticsearchRepository的补充。
