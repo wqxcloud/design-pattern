@@ -27,21 +27,33 @@ public class DataAccessController {
     @GetMapping("/getAll")
     public Result getAll() {
         List<Employee> employeeList = new ArrayList<>();
-        repository.findAll().forEach(employeeList::add);
-        repository.findByInterest("rock climbing").forEach(employeeList::add);
-        repository.findByFirstName("John").forEach(employeeList::add);
+//        repository.findAll().forEach(employeeList::add);
+//        repository.findByInterest("rock climbing").forEach(employeeList::add);
+//        repository.findByFirstName("John").forEach(employeeList::add);
         employeeService.findAll().forEach(employeeList::add);
         return ResultGenerator.genSuccessResult(employeeList);
     }
-    @GetMapping("/findByInterestAndSortByAge")
-    public Result findByInterestAndSortByAge(String interest) {
-        List<Employee>  employeeList =employeeService.findByInterestAndSortByAge(interest);
+
+    /**
+     * 关键字搜索
+     * @param keyWord
+     * @return
+     */
+    @GetMapping("/findByKeywordAndSortByAge")
+    public Result findByKeywordAndSortByAge(String keyWord) {
+        List<Employee>  employeeList =employeeService.findByKeywordAndSortByAge(keyWord);
         return ResultGenerator.genSuccessResult(employeeList);
     }
 
     @PostMapping("/addOne")
     public Result addOne(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
+        return ResultGenerator.genSuccessResult();
+    }
+
+    @GetMapping("/deleteAll")
+    public Result deleteAll() {
+        repository.deleteAll();
         return ResultGenerator.genSuccessResult();
     }
 }

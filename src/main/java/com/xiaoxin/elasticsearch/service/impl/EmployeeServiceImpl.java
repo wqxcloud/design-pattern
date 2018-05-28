@@ -44,14 +44,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
-     * 根据兴趣爱好模糊匹配，并且通过你年龄降序排列
-     * @param interest
+     * 根据关键字全文模糊匹配，并且通过你年龄降序排列
+     * @param keyword
      * @return
      */
     @Override
-    public List<Employee> findByInterestAndSortByAge(String interest) {
+    public List<Employee> findByKeywordAndSortByAge(String keyword) {
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-        SearchQuery searchQuery =nativeSearchQueryBuilder.withQuery(QueryBuilders.queryStringQuery(interest))
+        SearchQuery searchQuery =nativeSearchQueryBuilder.withQuery(QueryBuilders.queryStringQuery(keyword))
                 .withSort(SortBuilders.fieldSort("age").order(SortOrder.DESC)).build();
         List<Employee> list = elasticsearchTemplate.queryForList(searchQuery,Employee.class);
         return list;

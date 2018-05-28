@@ -16,7 +16,7 @@ public interface EmployeeService {
     List<Employee> findAll();
 
 
-    List<Employee> findByInterestAndSortByAge(String interest);
+    List<Employee> findByKeywordAndSortByAge(String keyword);
 
     void addEmployee(Employee employee);
 
