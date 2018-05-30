@@ -3,6 +3,7 @@ package com.xiaoxin.guava.util.collections;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
+import com.xiaoxin.guava.util.consumer.ObjectPrintConsumer;
 import org.junit.Test;
 
 /**
@@ -18,13 +19,13 @@ public class MultisetTest {
         multiset.add(12);
         multiset.add("12");
         multiset.add(null);
-        multiset.forEach(new ObjectConsumer());
+        multiset.forEach(new ObjectPrintConsumer());
     }
 
     @Test
     public void immutableMultisetTest() {
         ImmutableMultiset immutableMultiset = ImmutableMultiset.of("333", 444, 44.00);//不能包含null值，否则java.lang.NullPointerException
-        immutableMultiset.forEach(new ObjectConsumer());
+        immutableMultiset.forEach(new ObjectPrintConsumer());
     }
 
 

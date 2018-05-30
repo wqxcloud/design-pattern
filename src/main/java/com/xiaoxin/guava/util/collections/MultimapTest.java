@@ -2,6 +2,7 @@ package com.xiaoxin.guava.util.collections;
 
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.MultimapBuilder;
+import com.xiaoxin.guava.util.consumer.ObjectPrintConsumer;
 import org.junit.Test;
 
 /**
@@ -19,8 +20,8 @@ public class MultimapTest {
         treeListMultimap.put("a", 3);
         treeListMultimap.put("b", 5);
         treeListMultimap.put("b", 6);
-        treeListMultimap.asMap().get("a").forEach(new ObjectConsumer());
-        treeListMultimap.asMap().get("b").forEach(new ObjectConsumer());
+        treeListMultimap.asMap().get("a").forEach(new ObjectPrintConsumer());
+        treeListMultimap.asMap().get("b").forEach(new ObjectPrintConsumer());
 
 
     }
