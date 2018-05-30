@@ -1,5 +1,6 @@
 package com.xiaoxin.guava.util.string;
 
+import com.google.common.base.CaseFormat;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
@@ -51,7 +52,14 @@ public class StringProcessorTest {
         Splitter splitter1 = Splitter.on("&");
         Map<String,String> map =splitter1.withKeyValueSeparator("=").split(mapString);
         map.forEach(new BiPrinterConsumer());
+    }
 
+    @Test
+    public void caseFormat(){
+        String camelStr = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "tb_user");
+        log.info("formated string:{}",camelStr);
+        String underScoreStr = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "tbUser");
+        log.info("formated string:{}",underScoreStr);
 
     }
 }
