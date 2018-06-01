@@ -8,11 +8,13 @@
 
 package com.xiaoxin.config;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -32,7 +34,7 @@ public class MybatisConfigurer extends AbstractMyBatisConfigurer {
 
     @Bean
     @Primary
-    public SqlSessionFactory sqlSessionFactoryBean(@Autowired DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactoryBean(@Autowired DruidDataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = getSqlSessionFactoryBean(dataSource);
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:mapper/**/*.xml"));
@@ -50,7 +52,7 @@ public class MybatisConfigurer extends AbstractMyBatisConfigurer {
 
     @Bean
     @Primary
-    public DataSourceTransactionManager transactionManager1(@Autowired DataSource dataSource) {
+    public DataSourceTransactionManager transactionManager(@Autowired DruidDataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
 
     }

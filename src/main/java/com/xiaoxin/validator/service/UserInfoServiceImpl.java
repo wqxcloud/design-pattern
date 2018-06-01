@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @date 2018/5/18 下午8:08
  */
 @Service
-@Transactional
 public class UserInfoServiceImpl implements UserInfoService{
     @Autowired(required = false)
     private UserInfoMapper userInfoMapper;
