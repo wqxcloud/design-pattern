@@ -12,6 +12,9 @@
 9. aop
 10. rmi
 11. hibernate-validator
-12. ...
+12. java lock
+13. mysql json data type
+14. docker
+15. ...
 ```
 是自我学习的整理和探索
