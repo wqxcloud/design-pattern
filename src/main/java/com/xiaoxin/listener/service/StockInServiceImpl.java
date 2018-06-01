@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.annotation.Primary;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,6 +19,7 @@ public class StockInServiceImpl implements StockInService, ApplicationEventPubli
 
     private ApplicationEventPublisher applicationEventPublisher;
     @Override
+    @Async
     public void stockIn() {
         log.info("executed method stockIn");
         StockInCompleteEvent event =new StockInCompleteEvent(this,"CGD000001");

@@ -11,10 +11,10 @@ import org.springframework.scheduling.annotation.Async;
  * @date 2018/5/30 下午3:39
  */
 @Slf4j
-@Async
-public class StockInCompleteNotifier implements ApplicationListener<StockInCompleteEvent> {
+public class StockInCompleteListener implements ApplicationListener<StockInCompleteEvent> {
 
     @Override
+    @Async
     public void onApplicationEvent(StockInCompleteEvent stockInCompleteEvent) {
         stockInCompleteEvent.changePurchaseOrderStatus();
     }

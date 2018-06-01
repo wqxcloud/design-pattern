@@ -2,6 +2,7 @@ package com.xiaoxin.listener.springannotation;
 
 import com.xiaoxin.listener.spring.StockInCompleteEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,10 +11,14 @@ import org.springframework.stereotype.Component;
  * @date 2018/5/30 下午5:48
  */
 @Component
-public class StockInCompleteAnnotationNotifier {
+public class StockInCompleteAnnotationListener {
 
     @EventListener
-    private void processStockInCompleteEvent(StockInCompleteEvent event){
+    @Async
+    public void processStockInCompleteEvent(StockInCompleteEvent event){
         event.changePurchaseOrderStatusAnnotationDrived();
     }
 }
+
+
+
